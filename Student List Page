@@ -1,0 +1,66 @@
+import React from "react";
+import "./StudentList.css";
+
+export default function StudentList({ students }) {
+  return (
+    <div className="admin-container">
+      <aside className="sidebar">
+        <h3>Mess LMS</h3>
+        <a href="#">Bill Calculation</a>
+        <a href="#">Non-Veg Items</a>
+        <a href="#">Admin Page</a>
+        <button className="logout-btn">Logout</button>
+      </aside>
+
+      <main className="content">
+        <h2>Students List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Roll Number</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Year</th>
+              <th>Mess Bill</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((s) => (
+              <tr key={s.roll}>
+                <td>{s.roll}</td>
+                <td>{s.name}</td>
+                <td>{s.department}</td>
+                <td>{s.year}</td>
+                <td>₹{s.bill}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </main>
+    </div>
+  );
+}
+//css
+.content table {
+  border-collapse: collapse;
+  width: 90%;
+}
+
+.content th, .content td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.content th {
+  background: #f2f2f2;
+}
+
+.logout-btn {
+  margin-top: 20px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
