@@ -1,0 +1,104 @@
+import React, { useState } from "react";
+import "../styles/HostelBillExtractor.css";
+
+export default function HostelBillExtractor() {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [extractedAmount, setExtractedAmount] = useState(null);
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const handleUpload = () => {
+    if (!selectedFile) {
+      alert("Please select a file first");
+      return;
+    }
+    // Static mock extraction (you can add OCR later)
+    setExtractedAmount(35.0);
+  };
+
+  return (
+    <div className="extractor-container">
+      <div className="extractor-box">
+        <h2>Hostel Bill Extractor</h2>
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={handleUpload}>Upload & Extract</button>
+        {extractedAmount !== null && (
+          <div className="result">
+            <h3>Extracted Total: ₹ {extractedAmount.toFixed(2)}</h3>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+//css
+.extractor-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f4f7fa;
+}
+
+.extractor-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.extractor-box h2 {
+  margin-bottom: 20px;
+}
+
+.extractor-box input[type="file"] {
+  margin-bottom: 15px;
+  display: block;
+}
+
+.extractor-box button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.extractor-box button:hover {
+  background: #0056b3;
+}
+
+.result {
+  margin-top: 20px;
+  background: #f7faff;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+//src/App.jsx
+import React from "react";
+import HostelBillExtractor from "./components/HostelBillExtractor";
+
+function App() {
+  return <HostelBillExtractor />;
+}
+
+export default App;
+
+//src/main.jsx (Vite)
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
