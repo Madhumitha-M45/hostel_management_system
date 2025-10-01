@@ -1,0 +1,59 @@
+import React, { useState } from "react";
+import "./NonVegItems.css";
+
+export default function NonVegItems() {
+  const [items, setItems] = useState([
+    { roll: "221501", item: "egg", date: "4/3/2025" },
+    { roll: "221502", item: "chicken", date: "4/3/2025" }
+  ]);
+
+  const handleFileUpload = (e) => {
+    alert("File Uploaded!");
+  };
+
+  return (
+    <div className="admin-container">
+      <aside className="sidebar">
+        <h3>Mess LMS</h3>
+        <a href="#">Bill Calculation</a>
+        <a href="#">Non-Veg Items</a>
+        <a href="#">Admin Page</a>
+      </aside>
+
+      <main className="content">
+        <h2>Non-Veg Items Management</h2>
+        <div className="upload-box">
+          <p>Upload Non-Veg Items</p>
+          <input type="file" onChange={handleFileUpload} />
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Roll Number</th>
+              <th>Item</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((i, idx) => (
+              <tr key={idx}>
+                <td>{i.roll}</td>
+                <td>{i.item}</td>
+                <td>{i.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </main>
+    </div>
+  );
+}
+//css
+.upload-box {
+  border: 2px dashed #ccc;
+  padding: 15px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
